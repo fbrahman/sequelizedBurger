@@ -11,7 +11,7 @@
       <li>
         {{burger_name}}
           <form action="/{{id}}?_method=PUT" method="POST">
-            <input type="hidden" name = "devour" value="true">
+            <input type="hidden" name = "devoured" value="true">
             <button type="submit">Eat IT!</button>
           </form>
         </li>
@@ -29,7 +29,7 @@
       <li>
         {{burger_name}}
           <form action="/{{id}}?_method=PUT" method="POST">
-            <input type="hidden" name = "devour" value="false">
+            <input type="hidden" name = "devoured" value="false">
             <button type="submit">Send it back!</button>
           </form>
         </li>
