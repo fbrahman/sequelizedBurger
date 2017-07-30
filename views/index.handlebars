@@ -1,0 +1,58 @@
+
+<img src="/assets/img/burger_trans.png" id="burger-img">
+<h1 id="header">Eat-da-Burger!</h1>
+
+<div id="available">
+  <h2 id="available-header"> Burgers ready to serve </h2>
+
+  <ul>
+    {{#each burgers}}
+      {{#unless devoured}}
+      <li>
+        {{burger_name}}
+          <form action="/{{id}}?_method=PUT" method="POST">
+            <input type="hidden" name = "devour" value="true">
+            <button type="submit">Eat IT!</button>
+          </form>
+        </li>
+        {{/unless}}
+      {{/each}}
+  </ul>
+</div>
+
+<div id="devoured">
+  <h2 id="devoured-header"> Devoured burgers: </h2>
+
+  <ul>
+    {{#each burgers}}
+      {{#if devoured}}
+      <li>
+        {{burger_name}}
+          <form action="/{{id}}?_method=PUT" method="POST">
+            <input type="hidden" name = "devour" value="false">
+            <button type="submit">Send it back!</button>
+          </form>
+        </li>
+        {{/if}}
+      {{/each}}
+  </ul>
+</div>
+
+
+<div id="order">
+  <h2 id="order-header"> Order a  custom burger </h2>
+
+  <form class="create-update-form" action="/" method="POST">
+    
+    <div class="form-group">
+      <label for="ba"> Burger Name: </label>
+      <input type="text" id="ba" name = "burger_name">
+    </div>
+
+    <button type="submit"> Place Order</button>
+  </form>
+</div>
+
+<div id="footer">&#169; Copyright 2017 Fahad Rahman</div>
+  
+</div>
