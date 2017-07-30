@@ -1,10 +1,10 @@
 const express = require('express');
-const burger = require('../models/burger');
+const db = require('../models');
 
 const router = express.Router();
 
-router.get('/', function(req, res) {
-    burger.all(function(data) {
+router.get('/', function (req, res) {
+    db.burger.findAll({}).then(function (data) {
         let hbsObject = {
             burgers: data
         };
@@ -12,21 +12,22 @@ router.get('/', function(req, res) {
     });
 });
 
-router.post('/', function(req, res) {
-    let burgerName = req.body.burger_name;
-
-    burger.create(burgerName, function() {
-            res.redirect('/');
-        });
+router.post('/', function (req, res) {
+   db.burger.create(req.body).then(function(){
+       res.redirect('/');
+   })
 });
 
-router.put('/:id', function(req, res) {
+router.put('/:id', function (req, res) {
     let burgerID = req.params.id;
-    let eatenBool = req.body.devour;
 
-    burger.update(eatenBool, burgerID, function() {
-            res.redirect('/');
-        });
+    db.burger.update(req.body,{
+        where:{
+            id:burgerID
+        }
+    }).then(function(){
+        res.redirect('/');
+    })
 });
 
 module.exports = router;
