@@ -135,6 +135,7 @@ button {
     border-bottom: 1px solid var(--brown);
     background-color: var(--red);
     padding: .25em;
+    text-transform: lowercase;
 }
 
 #ba:focus {
